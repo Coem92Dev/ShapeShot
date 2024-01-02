@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1o21pe7ay60g"]
+
+[ext_resource type="Script" path="res://prefabs/UI/resetBtn.gd" id="1_iovwa"]
+
+[node name="Control" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -125.0
+offset_right = 20.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+
+[node name="KillCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -57.0
+offset_right = 43.5
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "KillCounter"
+
+[node name="KillCounter2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -88.0
+offset_right = 44.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Time"
+
+[node name="resetBtn" type="Button" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 114.0
+offset_right = 4.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+script = ExtResource("1_iovwa")
+
+[connection signal="mouse_entered" from="resetBtn" to="resetBtn" method="_on_mouse_entered"]
+[connection signal="pressed" from="resetBtn" to="resetBtn" method="_on_pressed"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci2tglirqx1lk"]
+
+[ext_resource type="StyleBox" uid="uid://6ea4hxu7lm7u" path="res://prefabs/UI/new_style_box_flat.tres" id="1_vquoy"]
+[ext_resource type="Script" path="res://prefabs/UI/Fireratebtn.gd" id="2_co68r"]
+[ext_resource type="Texture2D" uid="uid://dcpqp5w0sm073" path="res://Sprites/Pentagon.png" id="3_rovp7"]
+[ext_resource type="Texture2D" uid="uid://b5h5scs4l6y4m" path="res://Sprites/Hexagon.png" id="4_8fp6x"]
+
+[node name="FireRateBtn" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = ExtResource("1_vquoy")
+theme_override_styles/hover = ExtResource("1_vquoy")
+theme_override_styles/pressed = ExtResource("1_vquoy")
+theme_override_styles/disabled = ExtResource("1_vquoy")
+theme_override_styles/focus = ExtResource("1_vquoy")
+flat = true
+script = ExtResource("2_co68r")
+
+[node name="Pentagon" type="Sprite2D" parent="."]
+self_modulate = Color(0.266667, 0.721569, 0.6, 1)
+position = Vector2(64, 64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_rovp7")
+
+[node name="Pentagon2" type="Sprite2D" parent="Pentagon"]
+self_modulate = Color(0.964706, 0.956863, 0.901961, 1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_rovp7")
+
+[node name="Node2D" type="Node2D" parent="Pentagon/Pentagon2"]
+position = Vector2(-2.5, -7.5)
+rotation = -0.755017
+scale = Vector2(1.25, 1.25)
+
+[node name="Hexagon" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.266667, 0.721569, 0.6, 1)
+position = Vector2(-60, 0)
+rotation = -0.208157
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_8fp6x")
+
+[node name="Hexagon2" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.266667, 0.721569, 0.6, 1)
+position = Vector2(-30, 0)
+rotation = 0.315517
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_8fp6x")
+
+[node name="Hexagon3" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.266667, 0.721569, 0.6, 1)
+rotation = -0.244523
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_8fp6x")
+
+[node name="Hexagon4" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.266667, 0.721569, 0.6, 1)
+position = Vector2(30, 0)
+rotation = 0.465704
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_8fp6x")
+
+[node name="Hexagon5" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.266667, 0.721569, 0.6, 1)
+position = Vector2(60, 0)
+rotation = -0.40021
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_8fp6x")
+
+[node name="Selected" type="Sprite2D" parent="Pentagon"]
+visible = false
+self_modulate = Color(0.964706, 0.956863, 0.901961, 1)
+z_index = -1
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_rovp7")
+
+[node name="Label" type="Label" parent="Pentagon"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = -146.0
+offset_right = -91.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "12332131"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://b81b0gwgjggcx"]
+
+[ext_resource type="Script" path="res://prefabs/Snek/Snekgun.gd" id="1_deet1"]
+[ext_resource type="Texture2D" uid="uid://b5h5scs4l6y4m" path="res://Sprites/Hexagon.png" id="2_qeiyy"]
+[ext_resource type="Script" path="res://Scripts/Shadow.gd" id="3_o5peb"]
+[ext_resource type="Texture2D" uid="uid://b7n11m6lh24q6" path="res://Sprites/Box.png" id="4_c3mal"]
+[ext_resource type="PackedScene" uid="uid://doa8wm2wg70qv" path="res://prefabs/Gun/Gun.tscn" id="5_gpguc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipysr"]
+radius = 14.0
+
+[node name="SnekPart" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_deet1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ipysr")
+
+[node name="Hexagon" type="Sprite2D" parent="."]
+self_modulate = Color(0.964706, 0.956863, 0.901961, 1)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_qeiyy")
+
+[node name="Hexagon3" type="Sprite2D" parent="."]
+self_modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_qeiyy")
+
+[node name="Hexagon2" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_qeiyy")
+script = ExtResource("3_o5peb")
+target = NodePath("../Hexagon")
+
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="spr" type="Sprite2D" parent="Turret"]
+modulate = Color(0.964706, 0.956863, 0.901961, 1)
+position = Vector2(8.50446, -3.07861e-05)
+rotation = -1.5708
+scale = Vector2(0.0432108, 0.173916)
+texture = ExtResource("4_c3mal")
+
+[node name="spr3" type="Sprite2D" parent="Turret"]
+self_modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+rotation = -1.5708
+scale = Vector2(0.0648142, -0.0910426)
+texture = ExtResource("4_c3mal")
+
+[node name="spr4" type="Sprite2D" parent="Turret" node_paths=PackedStringArray("target")]
+modulate = Color(0.964706, 0.956863, 0.901961, 1)
+rotation = -1.5708
+scale = Vector2(0.0648142, -0.0910426)
+texture = ExtResource("4_c3mal")
+script = ExtResource("3_o5peb")
+target = NodePath("../spr3")
+
+[node name="spr2" type="Sprite2D" parent="Turret" node_paths=PackedStringArray("target")]
+modulate = Color(0.964706, 0.956863, 0.901961, 1)
+position = Vector2(8.50447, -3.07861e-05)
+rotation = -1.5708
+scale = Vector2(0.0432108, 0.173916)
+texture = ExtResource("4_c3mal")
+script = ExtResource("3_o5peb")
+target = NodePath("../spr")
+
+[node name="gun" parent="Turret" instance=ExtResource("5_gpguc")]
+position = Vector2(31, -1.45519e-11)
+skew = 1.94311e-05
+isEnemy = true

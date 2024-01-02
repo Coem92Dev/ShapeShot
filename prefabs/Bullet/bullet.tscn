@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://hkog8y47qpme"]
+
+[ext_resource type="Script" path="res://prefabs/Bullet/Bullet.gd" id="1_uiy7y"]
+[ext_resource type="Texture2D" uid="uid://b5h5scs4l6y4m" path="res://Sprites/Hexagon.png" id="2_akijs"]
+[ext_resource type="Script" path="res://Scripts/Shadow.gd" id="3_hj3u1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qdoe"]
+radius = 11.0
+
+[node name="Bullet" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_uiy7y")
+goodColor = Color(0.266667, 0.721569, 0.6, 1)
+badColor = Color(0.764706, 0.0431373, 0.0392157, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.266667, 0.721569, 0.6, 1)
+z_index = -1
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_akijs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_akijs")
+script = ExtResource("3_hj3u1")
+target = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6qdoe")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b74fuw31gjotl"]
+
+[ext_resource type="PackedScene" uid="uid://mda7ci2t03q8" path="res://prefabs/player/player.tscn" id="1_p56q5"]
+[ext_resource type="PackedScene" uid="uid://bvacsym8f6bah" path="res://prefabs/UI/Overlay.tscn" id="2_4se1v"]
+[ext_resource type="Script" path="res://Scene/CameraShaker.gd" id="2_dgbdl"]
+[ext_resource type="PackedScene" uid="uid://5e3tdtr4hcqv" path="res://prefabs/Snek/snek.tscn" id="4_cotxi"]
+
+[node name="World" type="Node2D"]
+process_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("1_p56q5")]
+position = Vector2(-94, 0)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-94, 0)
+script = ExtResource("2_dgbdl")
+fade = 7.0
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_4se1v")]
+
+[node name="Snek" parent="." instance=ExtResource("4_cotxi")]
+position = Vector2(10, 69)

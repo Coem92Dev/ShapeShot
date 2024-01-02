@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc63w2i3pmtkg"]
+
+[ext_resource type="Texture2D" uid="uid://b7n11m6lh24q6" path="res://Sprites/Box.png" id="1_o4lg2"]
+[ext_resource type="Script" path="res://prefabs/Blocker/blocker.gd" id="1_prbvk"]
+[ext_resource type="Script" path="res://Scripts/Shadow.gd" id="2_j62e7"]
+[ext_resource type="Texture2D" uid="uid://bp6rw6ploxx7f" path="res://Sprites/Small_flame.png" id="4_c0ud8"]
+[ext_resource type="Texture2D" uid="uid://cjhradi5osplq" path="res://Sprites/Triangle_256.png" id="5_0fiwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv1qn"]
+size = Vector2(128, 26)
+
+[sub_resource type="Curve" id="Curve_lrm65"]
+_data = [Vector2(0, 0.246342), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Blocker" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_prbvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_lv1qn")
+
+[node name="Box" type="Sprite2D" parent="."]
+modulate = Color(0.964706, 0.956863, 0.901961, 1)
+rotation = 1.5708
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("1_o4lg2")
+
+[node name="Box2" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+rotation = 1.5708
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("1_o4lg2")
+script = ExtResource("2_j62e7")
+target = NodePath("../Box")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(0.964706, 0.956863, 0.901961, 0.333333)
+z_index = -1
+position = Vector2(-9, 0)
+amount = 4
+local_coords = true
+texture = ExtResource("4_c0ud8")
+gravity = Vector2(0, 0)
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.15
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_lrm65")
+
+[node name="Triangle256" type="Sprite2D" parent="."]
+modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+position = Vector2(-4, 1)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_0fiwq")
+
+[node name="Triangle257" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(-4, 1)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_0fiwq")
+script = ExtResource("2_j62e7")
+target = NodePath("../Triangle256")

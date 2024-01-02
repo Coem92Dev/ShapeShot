@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dshx7t2q7uvdl"]
+
+[ext_resource type="Script" path="res://prefabs/Snek/SnekPart.gd" id="1_ix8jr"]
+[ext_resource type="Texture2D" uid="uid://b5h5scs4l6y4m" path="res://Sprites/Hexagon.png" id="2_77y2c"]
+[ext_resource type="Script" path="res://Scripts/Shadow.gd" id="3_fawe1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipysr"]
+radius = 14.0
+
+[node name="SnekPart" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_ix8jr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ipysr")
+
+[node name="Hexagon" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_77y2c")
+
+[node name="Hexagon3" type="Sprite2D" parent="."]
+self_modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_77y2c")
+
+[node name="Hexagon2" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_77y2c")
+script = ExtResource("3_fawe1")
+target = NodePath("../Hexagon")

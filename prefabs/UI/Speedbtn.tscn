@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbq3acr1odecu"]
+
+[ext_resource type="StyleBox" uid="uid://6ea4hxu7lm7u" path="res://prefabs/UI/new_style_box_flat.tres" id="1_3lrrq"]
+[ext_resource type="Script" path="res://prefabs/UI/Speedbtn.gd" id="2_y6wpk"]
+[ext_resource type="Texture2D" uid="uid://dcpqp5w0sm073" path="res://Sprites/Pentagon.png" id="3_l8eq7"]
+[ext_resource type="Texture2D" uid="uid://cjhradi5osplq" path="res://Sprites/Triangle_256.png" id="4_knpd6"]
+
+[node name="SpeedBtn" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = ExtResource("1_3lrrq")
+theme_override_styles/hover = ExtResource("1_3lrrq")
+theme_override_styles/pressed = ExtResource("1_3lrrq")
+theme_override_styles/disabled = ExtResource("1_3lrrq")
+theme_override_styles/focus = ExtResource("1_3lrrq")
+flat = true
+script = ExtResource("2_y6wpk")
+
+[node name="Pentagon" type="Sprite2D" parent="."]
+self_modulate = Color(0.266667, 0.721569, 0.6, 1)
+position = Vector2(64, 64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_l8eq7")
+
+[node name="Pentagon2" type="Sprite2D" parent="Pentagon"]
+self_modulate = Color(0.964706, 0.956863, 0.901961, 1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_l8eq7")
+
+[node name="Node2D" type="Node2D" parent="Pentagon/Pentagon2"]
+position = Vector2(-32.5, -5)
+scale = Vector2(1.25, 1.25)
+
+[node name="Triangle256" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.764706, 0.0431373, 0.0392157, 1)
+position = Vector2(60, 1)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_knpd6")
+
+[node name="Triangle257" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.964706, 0.956863, 0.901961, 1)
+position = Vector2(40, 1)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_knpd6")
+
+[node name="Triangle258" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.764706, 0.0431373, 0.0392157, 1)
+position = Vector2(4, 1)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_knpd6")
+
+[node name="Triangle259" type="Sprite2D" parent="Pentagon/Pentagon2/Node2D"]
+self_modulate = Color(0.964706, 0.956863, 0.901961, 1)
+position = Vector2(-16, 1)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_knpd6")
+
+[node name="Selected" type="Sprite2D" parent="Pentagon"]
+visible = false
+self_modulate = Color(0.964706, 0.956863, 0.901961, 1)
+z_index = -1
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_l8eq7")
+
+[node name="Label" type="Label" parent="Pentagon"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = -146.0
+offset_right = -91.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "12332131"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6dj013mdc8ab"]
+
+[ext_resource type="Script" path="res://prefabs/Boss1/boss_1.gd" id="1_cox1p"]
+[ext_resource type="Texture2D" uid="uid://b5h5scs4l6y4m" path="res://Sprites/Hexagon.png" id="1_tt102"]
+[ext_resource type="Script" path="res://Scripts/Shadow.gd" id="2_6nfc1"]
+[ext_resource type="Texture2D" uid="uid://cjhradi5osplq" path="res://Sprites/Triangle_256.png" id="3_yaabv"]
+[ext_resource type="Texture2D" uid="uid://vjiwpkcc6grc" path="res://Sprites/flame.png" id="4_qnl8y"]
+[ext_resource type="PackedScene" uid="uid://doa8wm2wg70qv" path="res://prefabs/Gun/Gun.tscn" id="5_wjlvb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmw6d"]
+radius = 56.0089
+
+[sub_resource type="Curve" id="Curve_rkjpi"]
+_data = [Vector2(0, 0.246342), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Boss1" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_cox1p")
+
+[node name="Hexagon" type="Sprite2D" parent="."]
+modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tt102")
+
+[node name="Hexagon3" type="Sprite2D" parent="."]
+modulate = Color(0.964706, 0.956863, 0.901961, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_tt102")
+
+[node name="Hexagon2" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tt102")
+script = ExtResource("2_6nfc1")
+target = NodePath("../Hexagon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pmw6d")
+
+[node name="Triangle256" type="Sprite2D" parent="."]
+modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+position = Vector2(-47, 81)
+rotation = -2.61799
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_yaabv")
+
+[node name="Triangle257" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(-42, 84)
+rotation = -2.61799
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_yaabv")
+script = ExtResource("2_6nfc1")
+target = NodePath("../Triangle256")
+
+[node name="Triangle258" type="Sprite2D" parent="."]
+modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+position = Vector2(-47, -81)
+rotation = 5.75959
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_yaabv")
+
+[node name="Triangle259" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(-51, -78)
+rotation = 5.75959
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_yaabv")
+script = ExtResource("2_6nfc1")
+target = NodePath("../Triangle258")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(0.984314, 0.392157, 0.0431373, 0.168627)
+z_index = -1
+position = Vector2(-33, 3)
+amount = 6
+local_coords = true
+texture = ExtResource("4_qnl8y")
+gravity = Vector2(0, 0)
+angle_min = -10.0
+angle_max = 10.0
+scale_amount_min = 0.4
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_rkjpi")
+
+[node name="Turret" type="Node2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="spr" type="Sprite2D" parent="Turret"]
+modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_yaabv")
+
+[node name="gun" parent="Turret/spr" instance=ExtResource("5_wjlvb")]
+position = Vector2(0, 130)
+rotation = 1.5708
+scale = Vector2(10, 10)
+isEnemy = true
+
+[node name="Turret2" type="Node2D" parent="."]
+position = Vector2(0, 32)
+
+[node name="spr" type="Sprite2D" parent="Turret2"]
+modulate = Color(0.984314, 0.392157, 0.0431373, 1)
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_yaabv")
+
+[node name="gun" parent="Turret2/spr" instance=ExtResource("5_wjlvb")]
+position = Vector2(0, 130)
+rotation = 1.5708
+scale = Vector2(10, 10)
+isEnemy = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
